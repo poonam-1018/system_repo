@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+</head>
+    <meta charse="UTF-8">
+    <meta name="viewpoint" content="width-device-width, initial">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <form id="form" method="post">
+        <h1>Hello there! Please enter the city</h1>
+        <input type="text" id="city" placeholder="City"/> <br> <br>
+        <h1>Please enter the country</h1>
+        <input type="text" id="country" placeholder="Country"/> <br> <br>
+        <input type="submit" value="Get Current Temperature"/>
+    </form>>
+    <div class="weather-container" id="myapi">
+    <p class="weather"></p>
+    <style>
+         body {background-color: darkslategrey; text-align: center; color: floralwhite;}
+    </style>
+</div>
+    <script>
+        var form = document.getElementById('form')
+        form.addEventListener('submit', function(e){
+            //auto submission of the form
+            e.preventDefault()
+
+            var city = document.getElementById('city').value
+            var country = document.getElementById('country').value
+            //var id = document.getElementById('id').value
+
+            //fetch post request
+            fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric&appid=2b01c90e8fece8a7aa7834752360349a",{
+                method:'POST',
+                body:JSON.stringify({
+                    city:city,
+                    country:country,
+                    //id:id
+                }),
+                headers:{
+                    "Content-Type":"application/json; charset:UTF-8",
+                    "Accept": "application/json",
+                    "Access-Control-Allow-Origin": "*",
+                    "Access-Control-Allow-Methods": "*"
+                }
+
+            })
+            .then(function(response){
+                return response.json()
+            })
+            .then(function(data){
+                
+                //console.log(data.main.temp)
+                //console.log(data)
+                
+                var currentTemp = 
+                `[
+                   { params:[ name : temperature,
+                                value: ${data.main.temp}]
+                    } 
+            ]`
+            
+            console.log(currentTemp)
+            document.getElementById("myapi").innerHTML =`
+            <h1 class="show-weather">The current temperature below </h1> 
+            <h2>${currentTemp}</h2>
+            <style>
+                body {background-color: darkslategrey; text-align: center; color: floralwhite;}
+           </style>`
+        
+            }) 
+         
+
+        })
+      
+    </script> 
+    
+ 
+</body>
+</html>
