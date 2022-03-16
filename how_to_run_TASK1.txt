@@ -1,0 +1,47 @@
+****************** How to run TASK 1************
+
+URL to access the final html file uploaded on the GitHub: https://poonam-1018.github.io/system_repo/getTemp_api.html
+
+As the html program file is making a third party api call from a different domain, the call is being restricted by the CORS policy (Cross-Origin Resource Sharing)
+Hence, to bypass the same just for running the html file, please follow below steps:
+(Note: I would recommend to use Google-Chrome in Windows and Safari in MAC-OS)
+
+On Windows machine:
+1. Google-Chrome: 
+	a)create a data directory under C:\Users\[USERNAME]\Documents\my\data
+	b)Right click on desktop, add new shortcut
+	c)Add the target as "[PATH_TO_CHROME]\chrome.exe" --disable-web-security --disable-gpu --user-data-dir="[PATH_TO_DATA_DIRECTORY]"
+	d)Click OK.
+	e)Open the chrom using this shortcut and run the html file.
+	
+2. Firefox:
+	a) Open Firefox browser and in the address bar type about:config and hit Enter button.
+	b) Click on I’ll be careful, I promise! Button.
+	c) In search box type origin.
+	d) Look for security.fileuri.strict_origin_policy option.
+	e) Double click on security.fileuri.strict_origin_policy will change the status from true to false.
+	That’s all. Restart Firefox browser and reload the URL . Navigate the page which was showing Cross Origin Request Security (CORS) error. This time CORS error should not be happen.
+
+On MAC-OS:
+1. Safari:
+	The easiest and most reliable way to CORS in Safari is to disable CORS in the develop menu.
+	a)Enable the develop menu by going to Preferences > Advanced.
+	b)Then select “Disable Cross-Origin Restrictions” from the develop menu.
+	Once you’re done developing, restart Safari and it will go back to normal.
+	
+2. Firefox:
+	The easiest and most reliable way to disable CORS in Firefox is to install the CORS Everywhere plugin.
+	
+3. Google-Chrome:
+	The most reliable way to disable CORS in the latest version of Chrome on Mac (tested on v84) is to run it with web security disabled.
+	a)Force quit Chrome by going to the mac menu and pressing “force quit” (or pressing command Q).
+	b)Then run this command to open Chrome with web security disabled
+		open -n -a /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome — args — user-data-dir=”/tmp/chrome_dev_test” — disable-web-security
+	Once you’re done developing, restart Chrome and it will go back to normal.
+
+Once you choose the browser to access the url following above steps, please enter the name of the city and country in the textboxes given, of which you would like to fetch the Current temperature and hit the button, "Get Current Temperature"
+Names are not case-sensitive.
+Output will be shown as JSON on the same html page. It can also be seen on the console in the developer tool.
+
+
+
